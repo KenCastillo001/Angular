@@ -22,7 +22,9 @@ jobs:
           cache-dependency-path: FrontComponent/package-lock.json
 
       - name: Instalar dependencias
+        working-directory: FrontComponent
         run: npm ci
+
 
       - name: Compilar proyecto
         run: npm run build
