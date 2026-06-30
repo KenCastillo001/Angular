@@ -25,9 +25,10 @@ jobs:
         working-directory: FrontComponent
         run: npm ci
 
-
       - name: Compilar proyecto
+        working-directory: FrontComponent
         run: npm run build
 
       - name: Ejecutar pruebas
+        working-directory: FrontComponent
         run: npm test -- --watch=false --browsers=ChromeHeadless
