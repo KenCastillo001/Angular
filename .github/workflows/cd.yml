@@ -41,7 +41,7 @@ jobs:
       - name: Subir artefacto
         uses: actions/upload-pages-artifact@v3
         with:
-          path: FrontComponent/dist/front-component/browser
+          path: FrontComponent/dist/FrontComponent/browser
 
   deploy:
     needs: build
