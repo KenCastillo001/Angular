@@ -3,11 +3,11 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '@environments/environment';
 import {LogLevel , LogContext , LogEntry} from './logger.types';
 
-@Injectable({ProvidedIn : "root"})
+@Injectable({providedIn : "root"})
 export class LoggerService{
     private http = inject(HttpClient);
     private context :LogContext= {};
-    private LogLevel:LogLevel = environment?.production ? "ERROR" : "DEBUG";
+    private logLevel:LogLevel = environment?.production ? "ERROR" : "DEBUG";
     private queue: LogEntry[] = [];
 
     setContext(context : Partial<LogContext>){
@@ -44,8 +44,22 @@ flush():void{
     this.http.post(`${environment.api.baseUrl}/logs`, {entries :batch})
     .subscribe({
         error : (err)=>{
-            console.error("")
+            console.error("Failed to send Logs to server" , err)
         }
     })
+}
+
+private log(level : LogLevel , message : string , stackTrace?: string , data?: Record<string , any>) : void {
+    const levels : LogLevel[] = ["DEBUG" , "INFO" , "WARN" , "ERROR"];
+    if(levels.indexOf(level) < levels.indexOf(this.LogLevel)) return;
+
+
+
+
+
+
+
+
+
 }
 }
